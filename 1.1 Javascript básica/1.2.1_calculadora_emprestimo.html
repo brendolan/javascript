@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Loan Calculator</title>
+    <style>                                        /* Está é uma folha de estilos CSS */
+        .output {font-weight: bold;}               /* Valores calculados em negrito */
+        #payment {text-decoration: underline;}     /* Para elemento com id="payment" */
+        #graph {border: solid black 1px;}        /* O gráfico tem borda simples */
+        th, td {vertical-align: top;}              /* Não centraliza células da tabela */
+    </style>
+</head>
+<body>
+    <!--
+        Esta é uma tabela HTML com elementos <input> que permitem ao usuário inserir dados e elementos
+        <span> nos quais o programa pode exibir seus resultados. Esses elementos têm identificações
+        como "interest" e "years". Essas identificações são usadas no código JavaScript que vem após
+        a tabela. Note que alguns dos elementos de entrada definem rotinas de tratamento no evento
+        "onchange" ou "onclick". Elas especificam strings de código JavaScript a ser executado quando
+        o usuário insere dados ou dá um clique.
+    -->
+    <table>
+        <tr><th>Enter Loan Data:</th>
+            <td></td>
+            <th>Loan Balance, Cumulative Equity, and Interest Payments</th></tr>
+        <tr><td>Amount of the loan ($):</td>
+            <td><input id = "amount" onchange="calculate();"></td>
+            <td rowspan=8>
+                <canvas id="graph" width="400" height="250"></canvas></td></tr>
+        <tr><td>Annual interest (%):</td>
+            <td><input id="apr" onchange="calculate();"></td></tr>
+        <tr><td>Repayment period (years):</td>
+            <td><input id="years" onchange="calculate();"></td></tr>
+        <tr><td>Zipcode (to find lenders):</td>
+            <td><input id="zipcode" onchange="calculate();"></td></tr>
+        <tr><td>Approximate Payments:</td>
+            <td><button onchange="calculate();">Calculate</button></td></tr>            
+        <tr><td>Monthly payment:</td>
+            <td>$<span class="output" id="payment"></span></td></tr>
+        <tr><td>Total payment:</td>
+            <td>$<span class="output" id="total"></span></td></tr>            
+        <tr><td>Total interest:</td>
+            <td>$<span class="output" id="totalinterest"></span></td></tr>
+        <tr><th>Sponsors:</th><td colspan=2>
+            Apply for your loan with one of these fine lenders:
+            <div id="lenders"></div></td></tr>
+    </table>
+
+    <!--Normalmente o código JavaScript fica no <head> do Documento, mas para seguir
+        o livro, irei escrever como está nele, separando o contexto do HTML do Script -->
+    <script>
+        "use strinct";              // Usa o modo restrito do ECMAScript 5 nos navegadores que o suportam
+
+        /*
+         * Este script define a função calculate() chamada pelas rotinas de tratamento de evento
+         * no código HTML acima. A função lê valores de elementos <input>, calcula as informações
+         * de paamento de empréstimo, exibe o resultado em elementos <span>. Também salva os dados
+         * do usuário, exibe links para financeiras e desenha um gráfico
+        */
+
+        var amount = document.getElementById("amount");
+        var apr = document.getElementById("apr");
+        var years = document.getElementById("years");
+        var zipcode = document.getElementById("zipcode");
+        var payment = document.getElementById("payment");
+        var total = document.getElementById("total");
+        var totalinterest = document.getElementById("totalinterest");
+    </script>
+</body>
+</html>
